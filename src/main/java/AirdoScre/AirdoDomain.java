@@ -34,6 +34,8 @@ public class AirdoDomain {
     // 行きの行き先。（例えば、帯広だったら、OBO）
     public static final String ARRIVAL_PLACE = "HND";
 
+    public static WebElement nextVacantSheetBtn;
+
     public static void airdoSearchScreen(WebDriver driver){
         
         // String roundTripPath = "//label[@class='radio']/input[@name='roundtrip'][@id='" + ROUND_TRIP + "'][@type='radio']";
@@ -44,24 +46,29 @@ public class AirdoDomain {
         roundTrip = roundTripElements.get(ROUND_TRIP_NUMBER);
         roundTrip.click();
 
-        System.out.println("ラジオボタン入力OK");
+        // System.out.println("ラジオボタン入力OK");
 
         placeDepartureSelectElement = driver.findElement(By.className("place-departure"));
         Select select = new Select(placeDepartureSelectElement);
         select.selectByValue(DAPARTURE_PLACE);
 
-        System.out.println("出発の選択OK");
+        // System.out.println("出発の選択OK");
         
         placeArrivalSelectElement = driver.findElement(By.className("place-arrival"));
         select = new Select(placeArrivalSelectElement);
         select.selectByValue(ARRIVAL_PLACE);
 
-        System.out.println("到着の選択OK");
+        // System.out.println("到着の選択OK");
         
         searchScreenBtn = driver.findElement(By.xpath("//button[contains(@class, 'btn btn-yellow')]"));
         searchScreenBtn.click();
 
-        System.out.println("ボタンクリック完了！");
+        // System.out.println("ボタンクリック完了！");
+    }
+
+    public static void airdoCheckVacantSheet(WebDriver driver){
+        nextVacantSheetBtn = driver.findElement(By.xpath("//a[contains(@class, 'link-next next')]"));
+        nextVacantSheetBtn.click();
     }
 
 }

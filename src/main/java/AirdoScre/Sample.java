@@ -8,6 +8,9 @@ import java.lang.Thread;
 import java.io.IOException;
 
 class Sample{
+
+    private static int SEARCH_DATE_NUM = 10;
+
     public static void main(String[] args) throws IOException, InterruptedException{
 
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
@@ -19,7 +22,11 @@ class Sample{
 
         // 検索サイトの選択実装
         AirdoDomain.airdoSearchScreen(driver);
-
+        
+        for (int i = 0; i < SEARCH_DATE_NUM ;i++) {
+            AirdoDomain.airdoCheckVacantSheet(driver);
+        }
+       
         driver.quit();
     }
 }
