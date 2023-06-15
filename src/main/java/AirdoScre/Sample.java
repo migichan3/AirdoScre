@@ -19,14 +19,19 @@ class Sample{
         driver.get(AirdoDomain.SCRE_URL);
 
         Thread.sleep(AirdoDomain.WAIT_TIME);  // Let the user actually see something!
+        
+        // CSVファイルの記述開始
+        WriteCsv writeCsv = new WriteCsv();
 
         // 検索サイトの選択実装
         AirdoDomain.airdoSearchScreen(driver);
         
         for (int i = 0; i < SEARCH_DATE_NUM ;i++) {
-            AirdoDomain.airdoCheckVacantSheet(driver);
+            Thread.sleep(AirdoDomain.WAIT_TIME);
+            AirdoDomain.airdoCheckVacantSheet(driver, writeCsv);
         }
-       
+        
+        writeCsv.finishExportCsv();
         driver.quit();
     }
 }
